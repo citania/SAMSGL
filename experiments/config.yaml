@@ -1,0 +1,57 @@
+base_dir: data/model
+log_level: INFO
+data:
+  batch_size: 16
+#  dataset_dir: data/temperature/
+#  position_file: data/temperature/position_info.pkl
+  dataset_dir: E:/temp/data/component_of_wind
+  position_file: E:/temp/data/component_of_wind/position_info.pkl
+#  dataset_dir: /home/zouxiaobei/data/rain-30
+#  position_file: /home/zouxiaobei/data/rain-30/position_info.pkl
+  test_batch_size: 128
+
+model:
+  model_name: SAMSGL
+  cl_decay_steps: 2000
+  seq_len: 12
+  horizon: 12
+  input_dim: 2
+  output_dim: 2
+  l1_decay: 0
+  max_view: 2
+  node_num: 100
+  block_num: 4 
+  hidden_units: 64 
+  use_curriculum_learning: true
+  embed_dim: 8
+  lck_structure: [10, 8, 6]
+  location_dim: 2
+  conv_layer: 1
+  time_layer: 2
+  layer_size: 256
+  basis_function: GenericBasis
+  knn: true
+  n_head: 8
+
+train:
+  base_lr: 0.005
+  dropout: 0
+  epoch: 0
+  epochs: 100
+  epsilon: 0.001
+  log_dir: experiments
+  lr_decay_ratio: 0.05
+  max_grad_norm: 5
+  max_to_keep: 100
+  min_learning_rate: 1.0e-08
+  optimizer: adam
+  patience: 50
+  steps:
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+  test_every_n_epochs: 10
+  experiment_name: 'rain_plot_delay_nhead_1' # 2021~2025
+gpu: 0
